@@ -1,0 +1,29 @@
+services:
+  idrac-controller:
+    build: .
+    container_name: idrac-controller
+    ports:
+      - "8080:8080"
+    environment:
+      # iDRAC Configuration
+      - IDRAC_HOST=
+      - IDRAC_USERNAME=
+      - IDRAC_PASSWORD= 
+      
+      # Application Configuration
+      - RUST_LOG=info
+      - DATABASE_PATH=/data/idrac.db
+    
+    volumes:
+      # Persist database
+      - ./data:/data
+    
+    restart: unless-stopped
+    
+    # Network configuration
+    networks:
+      - idrac-network
+
+networks:
+  idrac-network:
+    driver: bridge

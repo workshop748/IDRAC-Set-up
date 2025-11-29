@@ -1,0 +1,8 @@
+/target
+/data
+.env
+*.db
+*.db-shm
+*.db-wal
+Cargo.lock
+issue.docx
